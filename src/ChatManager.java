@@ -1,4 +1,5 @@
 import java.util.*;
+//chat's manager
 
 public class ChatManager {
 
