@@ -16,6 +16,7 @@ public class ChatManager {
         for (int i = 0; i < numberOfChatMembers; i++) {
             System.out.println("enter member name");
             String name = scanner.next();
+
             System.out.println("is Active Member ? Yes/No");
             String answer = scanner.next();
             boolean isActive = false;
@@ -25,14 +26,14 @@ public class ChatManager {
 
             Member member = new Member(i, name, isActive);
             members.add(member);
-            if (isActive) {
+            if(isActive){
                 activeMembers.add(member);
             }
         }
     }
 
     public void startChat() {
-        while (activeMembers.size() > 0) {
+        while (activeMembers.size() > 0){
             Random rand = new Random();
             int indexOfSender = rand.nextInt(activeMembers.size());
             Member sender = activeMembers.get(indexOfSender);
