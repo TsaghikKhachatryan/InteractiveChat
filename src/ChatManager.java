@@ -20,7 +20,7 @@ public class ChatManager {
             System.out.println("is Active Member ? Y/N");
             String answer = scanner.next();
             boolean isActive = false;
-            if(answer.equals("Y") || answer.equals("y")){
+            if(answer.equalsIgnoreCase("yes")){
                 isActive = true;
             }
 
