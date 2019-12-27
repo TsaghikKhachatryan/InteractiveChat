@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 //chat's manager
 
@@ -51,9 +53,11 @@ public class ChatManager {
     void sendMessage(Member sender) {
         System.out.println("Please enter your message");
         String messageText = scanner.next();
-        Date date = new Date();
-        String dateTxt = String.format("%tc", date);
-        System.out.println(dateTxt + " " + sender.getName() + " " + messageText);
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+        String text = date.format(formatter);
+        LocalDate parsedDate = LocalDate.parse(text, formatter);
+        System.out.println(parsedDate + " " + sender.getName() + " " + messageText);
     }
 
     private void exit(Member member) {
