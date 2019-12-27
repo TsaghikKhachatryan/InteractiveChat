@@ -5,11 +5,11 @@ import java.util.*;
 
 public class ChatManager {
 
-    private Scanner scanner = new Scanner(System.in);
+
     private List<Member> members = new ArrayList<>();
     private List<Member> activeMembers = new ArrayList<>();
 
-    public void createChatMembers() {
+    public void createChatMembers(Scanner scanner) {
         System.out.println("enter number of chat members");
         int numberOfChatMembers = scanner.nextInt();
 
@@ -31,7 +31,7 @@ public class ChatManager {
         }
     }
 
-    public void startChat() {
+    public void startChat(Scanner scanner) {
         while (activeMembers.size() > 0) {
             Random rand = new Random();
             int indexOfSender = rand.nextInt(activeMembers.size());
@@ -41,7 +41,7 @@ public class ChatManager {
             int selectedAction = scanner.nextInt();
 
             if (selectedAction == 1) {
-                sendMessage(sender);
+                sendMessage(scanner, sender);
             } else {
                 exit(sender);
             }
@@ -49,7 +49,7 @@ public class ChatManager {
         System.out.println("No any active member...");
     }
 
-    void sendMessage(Member sender) {
+    void sendMessage(Scanner scanner, Member sender) {
         System.out.println("Please enter your message");
         String messageText = scanner.next();
         LocalDate date = LocalDate.now();
