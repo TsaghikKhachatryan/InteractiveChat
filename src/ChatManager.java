@@ -16,12 +16,10 @@ public class ChatManager {
         for (int i = 0; i < numberOfChatMembers; i++) {
             System.out.println("enter member name");
             String name = scanner.next();
-
             System.out.println("is Active Member ? Yes/No");
             String answer = scanner.next();
             boolean isActive = false;
-            boolean result = answer.equalsIgnoreCase("yes");
-            if (result) {
+            if (answer.equalsIgnoreCase("yes")) {
                 isActive = true;
             }
 
