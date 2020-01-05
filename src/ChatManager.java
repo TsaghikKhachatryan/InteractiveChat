@@ -1,18 +1,16 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-//chat's manager
 
 public class ChatManager {
 
-
-    private List<Member> members = new ArrayList<>();
-    private List<Member> activeMembers = new ArrayList<>();
+    private Member[] members;
+    private Member[] activeMembers;
 
     public void createChatMembers(Scanner scanner) {
         System.out.println("enter number of chat members");
         int numberOfChatMembers = scanner.nextInt();
-
+        members = new Member[numberOfChatMembers];
         for (int i = 0; i < numberOfChatMembers; i++) {
             System.out.println("enter member name");
             String name = scanner.next();
@@ -24,18 +22,33 @@ public class ChatManager {
             }
 
             Member member = new Member(i, name, isActive);
-            members.add(member);
-            if (isActive) {
-                activeMembers.add(member);
+            members[i] = member;
+        }
+        createActiveChatMembers();
+    }
+
+    private void createActiveChatMembers() {
+        int numberOfActiveMembers = 0;
+        int indexOfActiveMember = 0;
+        for (Member member : members) {
+            if (member.isActive()) {
+                ++numberOfActiveMembers;
+            }
+        }
+        activeMembers = new Member[numberOfActiveMembers];
+        for (Member member : members) {
+            if (member.isActive()) {
+                activeMembers[indexOfActiveMember] = member;
+                ++indexOfActiveMember;
             }
         }
     }
 
     public void startChat(Scanner scanner) {
-        while (activeMembers.size() > 0) {
+        while (activeMembers.length > 0) {
             Random rand = new Random();
-            int indexOfSender = rand.nextInt(activeMembers.size());
-            Member sender = activeMembers.get(indexOfSender);
+            int indexOfSender = rand.nextInt(activeMembers.length);
+            Member sender = activeMembers[indexOfSender];
 
             System.out.println("Select action \n1 : Sand Message \n2 : Exit");
             int selectedAction = scanner.nextInt();
@@ -60,6 +73,15 @@ public class ChatManager {
     }
 
     private void exit(Member member) {
-        activeMembers.remove(member);
+        Member[] updatedActiveMembers = new Member[activeMembers.length - 1];
+        int index = 0;
+        for (Member m : activeMembers) {
+            if (m.equals(member)) {
+                continue;
+            }
+            updatedActiveMembers[index] = m;
+            ++index;
+        }
+        activeMembers = updatedActiveMembers;
     }
 }
