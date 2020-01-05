@@ -1,17 +1,17 @@
 
 public class Member {
-    private int ID;
+    private int id;
     private String name;
     private boolean active;
 
-    public Member(int ID, String name, boolean active) {
-        this.ID = ID;
+    public Member(int id, String name, boolean active) {
+        this.id = id;
         this.name = name;
         this.active = active;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setName(String name) {
@@ -22,8 +22,8 @@ public class Member {
         this.active = active;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
